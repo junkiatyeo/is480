@@ -1,6 +1,6 @@
 //$(document).ready(function() {
 //	$('#themetable').DataTable({
-//		"sAjaxSource" : '/Steamboat/getThemes',
+//		"sAjaxSource" : '/Xiaobazaar/getThemes',
 //		"sAjaxDataProp" : "aaData",
 //	});
 //});
@@ -15,7 +15,7 @@ function loadThemeList() {
 					function() {
 						$
 								.ajax({
-									url : '/Steamboat/getThemesForAdmin',
+									url : '/Xiaobazaar/getThemesForAdmin',
 									type : "POST",
 									dataType : 'json',
 									error : function(err) {

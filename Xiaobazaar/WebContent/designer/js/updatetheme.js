@@ -11,7 +11,7 @@ function saveTheme(number){
 		var inputJson = JSON.stringify(input);
 		console.log(input);
 		$.ajax({
-			url : '/Steamboat/saveTheme?json=' + inputJson,
+			url : '/Xiaobazaar/saveTheme?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {

@@ -1,13 +1,13 @@
 //$(document).ready(function() {
 //	$('#themetable').DataTable({
-//		"sAjaxSource" : '/Steamboat/getThemes',
+//		"sAjaxSource" : '/Xiaobazaar/getThemes',
 //		"sAjaxDataProp" : "aaData",
 //	});
 //});
 function isLogin() {
 	var admin = localStorage.getItem("ADMIN");
 	if (admin == undefined || admin == 'undefined') {
-		location.href = "/Steamboat/admin-login.html";
+		location.href = "/Xiaobazaar/admin-login.html";
 		return false;
 	} else {
 		$("#userName").html(admin); // get designer's name from local
@@ -36,7 +36,7 @@ function adminLogin() {
 		inputJson = encodeURI(inputJson);
 
 		$.ajax({
-			url : '/Steamboat/admin/adminLogin?json=' + inputJson,
+			url : '/Xiaobazaar/admin/adminLogin?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -55,7 +55,7 @@ function adminLogin() {
 					var admin = message;
 					localStorage.clear();
 					localStorage.setItem("ADMIN", admin);
-					location.href = "/Steamboat/admin/";
+					location.href = "/Xiaobazaar/admin/";
 				}
 			}
 		});
@@ -64,7 +64,7 @@ function adminLogin() {
 
 function adminLogout() {
 	localStorage.clear();
-	window.location.href = "/Steamboat/admin-login.html";
+	window.location.href = "/Xiaobazaar/admin-login.html";
 }
 
 function AllTables() {
@@ -77,7 +77,7 @@ function loadThemeList() {
 					function() {
 						$
 								.ajax({
-									url : '/Steamboat/getThemesForAdmin',
+									url : '/Xiaobazaar/getThemesForAdmin',
 									type : "POST",
 									dataType : 'json',
 									error : function(err) {
@@ -159,7 +159,7 @@ function changeStatus(themeID, status) {
 	inputJson = encodeURI(inputJson);
 
 	$.ajax({
-		url : '/Steamboat/admin/changeThemeStatus?json=' + inputJson,
+		url : '/Xiaobazaar/admin/changeThemeStatus?json=' + inputJson,
 		type : "POST",
 		dataType : 'json',
 		error : function(err) {
@@ -202,7 +202,7 @@ function changePassword() {
 		inputJson = encodeURI(inputJson);
 
 		$.ajax({
-			url : '/Steamboat/admin/changeAdminPassword?json=' + inputJson,
+			url : '/Xiaobazaar/admin/changeAdminPassword?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -233,7 +233,7 @@ function loadProfile() {
 	inputJson = encodeURI(inputJson);
 
 	$.ajax({
-		url : '/Steamboat/admin/loadAdminProfile?json=' + inputJson,
+		url : '/Xiaobazaar/admin/loadAdminProfile?json=' + inputJson,
 		type : "POST",
 		dataType : 'json',
 		error : function(err) {
@@ -279,7 +279,7 @@ function adminRegister(){
 		inputJson = encodeURI(inputJson);
 		
 		$.ajax({
-			url : '/Steamboat/admin/AdminRegisterServlet?json='+inputJson,
+			url : '/Xiaobazaar/admin/AdminRegisterServlet?json='+inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -298,7 +298,7 @@ function adminRegister(){
 					var admin = message;
 					localStorage.clear();
 					localStorage.setItem("ADMIN", admin);
-					location.href = "/Steamboat/admin/";
+					location.href = "/Xiaobazaar/admin/";
 				}
 			}
 		});

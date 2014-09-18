@@ -49,7 +49,7 @@ public class FileUploadServlet extends HttpServlet {
 		JSONObject returnJson = new JSONObject();
 		
 		JSONParser parser = new JSONParser();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH_mm_ss");
 		
 		String contextRoot = getServletContext().getRealPath("/");
 		response.setContentType("text/html;charset=UTF-8");
@@ -105,7 +105,6 @@ public class FileUploadServlet extends HttpServlet {
 								}
 								
 								fileDir = contextRoot+uploadDirectory+"/"+folderName+File.separator+folderName+dateString+fileName;
-								/*Jun Kiat: this line of code determines the url of the uploaded file*/
 								urlDir = "/Xiaobazaar/"+uploadDirectory+"/"+folderName+File.separator+folderName+dateString+fileName;
 								
 								boolean correctFileType = false;

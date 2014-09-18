@@ -13,7 +13,7 @@ function loadThemeList() {
 						var username = localStorage.getItem("DESIGNER");
 						$
 								.ajax({
-									url : '/Steamboat/getThemesForDesigner?designer='
+									url : '/Xiaobazaar/getThemesForDesigner?designer='
 											+ username,
 									type : "POST",
 									dataType : 'json',
@@ -102,7 +102,7 @@ function loadThemeList() {
 function isLogin() {
 	var designer = localStorage.getItem("DESIGNER");
 	if (designer == undefined || designer == 'undefined') {
-		location.href = "/Steamboat/designer-login.html";
+		location.href = "/Xiaobazaar/designer-login.html";
 		return false;
 	} else {
 		$("#userName").html(designer); // get designer's name from local
@@ -114,7 +114,7 @@ function isLogin() {
 // logout
 function designerLogout() {
 	localStorage.clear();
-	window.location.href = "/Steamboat/designer-login.html";
+	window.location.href = "/Xiaobazaar/designer-login.html";
 }
 
 function designerLogin() {
@@ -138,7 +138,7 @@ function designerLogin() {
 		inputJson = encodeURI(inputJson);
 
 		$.ajax({
-			url : '/Steamboat/designer/designerLogin?json=' + inputJson,
+			url : '/Xiaobazaar/designer/designerLogin?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -157,7 +157,7 @@ function designerLogin() {
 					var designer = message;
 					localStorage.clear();
 					localStorage.setItem("DESIGNER", designer);
-					location.href = "/Steamboat/designer/";
+					location.href = "/Xiaobazaar/designer/";
 				}
 			}
 		});
@@ -181,7 +181,7 @@ function saveTheme(number) {
 		var inputJson = JSON.stringify(input);
 		console.log(input);
 		$.ajax({
-			url : '/Steamboat/saveTheme?json=' + inputJson,
+			url : '/Xiaobazaar/saveTheme?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -209,7 +209,7 @@ function uploadCSS(id) {
 	var fd = new FormData(document.getElementById(id + "Form"));
 	$
 			.ajax({
-				url : '/Steamboat/FileUploadServlet?json={"fileType":"css","uploadDirectory":"designer","folderName":"theme"}',
+				url : '/Xiaobazaar/FileUploadServlet?json={"fileType":"css","uploadDirectory":"designer","folderName":"theme"}',
 				type : "POST",
 				data : fd,
 				dataType : 'json',
@@ -252,7 +252,7 @@ function createTheme() {
 		inputJson = encodeURI(inputJson);
 
 		$.ajax({
-			url : '/Steamboat/createTheme?json=' + inputJson,
+			url : '/Xiaobazaar/createTheme?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			processData : false,
@@ -297,7 +297,7 @@ function changePassword() {
 		inputJson = encodeURI(inputJson);
 
 		$.ajax({
-			url : '/Steamboat/designer/changeDesignerPassword?json=' + inputJson,
+			url : '/Xiaobazaar/designer/changeDesignerPassword?json=' + inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -328,7 +328,7 @@ function loadProfile() {
 	inputJson = encodeURI(inputJson);
 	
 	$.ajax({
-		url : '/Steamboat/designer/loadDesignerProfile?json=' + inputJson,
+		url : '/Xiaobazaar/designer/loadDesignerProfile?json=' + inputJson,
 		type : "POST",
 		dataType : 'json',
 		error : function(err) {
@@ -374,7 +374,7 @@ function designerRegister(){
 		inputJson = encodeURI(inputJson);
 		
 		$.ajax({
-			url : '/Steamboat/designer/DesignerRegisterServlet?json='+inputJson,
+			url : '/Xiaobazaar/designer/DesignerRegisterServlet?json='+inputJson,
 			type : "POST",
 			dataType : 'json',
 			error : function(err) {
@@ -393,7 +393,7 @@ function designerRegister(){
 					var designer = message;
 					localStorage.clear();
 					localStorage.setItem("DESIGNER", designer);
-					location.href = "/Steamboat/designer/";
+					location.href = "/Xiaobazaar/designer/";
 				}
 			}
 		});
