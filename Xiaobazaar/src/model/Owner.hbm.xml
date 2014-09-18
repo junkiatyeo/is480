@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2014 11:40:28 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="model.Owner" table="OWNER">
+  <id name="ownerId" type="long">
+   <column name="OWNERID"/>
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="name" type="java.lang.String">
+   <column name="NAME"/>
+  </property>
+  <property generated="never" lazy="false" name="password" type="java.lang.String">
+   <column name="PASSWORD"/>
+  </property>
+  <one-to-one class="model.Store" lazy="false" name="store"/>
+ </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+.my-iframe {
+	border-style: hidden;
+	width: 100%;
+}
+
+.my-loading{
+	width: 26px !important;
+}
+
+.my-devider{
+	border-color: #FFFFFF;
+	margin-bottom: 10px;
+}
+
+.my-devider-dk{
+	border-color: #AAAAAA;
+	margin-bottom: 10px;
+}
+
+.my-top{
+	margin-top: 8px;
+}
+
+.my-iframe{
+	border-style: hidden;
+	width: 100%;
+}
+
+.my-image{
+	max-height: 160px;
+}

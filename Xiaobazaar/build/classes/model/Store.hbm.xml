@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 9, 2014 11:40:28 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+ <class name="model.Store" table="STORE">
+  <id name="storeId" type="long">
+   <column name="STOREID"/>
+   <generator class="increment"/>
+  </id>
+  <property generated="never" lazy="false" name="name" type="java.lang.String">
+   <column name="NAME"/>
+  </property>
+  <one-to-one class="model.Owner" lazy="false" name="owner"/>
+  <set lazy="false" name="products" sort="unsorted" table="PRODUCT">
+   <key>
+    <column name="STOREID"/>
+   </key>
+   <one-to-many class="model.Product"/>
+  </set>
+  <property generated="never" lazy="false" name="description" type="java.lang.String">
+   <column length="665" name="DESCRIPTION"/>
+  </property>
+  <property generated="never" lazy="false" name="themeId" type="long">
+   <column name="THEMEID"/>
+  </property>
+  <property generated="never" lazy="false" name="url" type="java.lang.String">
+   <column name="URL"/>
+  </property>
+  <property generated="never" lazy="false" name="layout" type="long">
+   <column name="LAYOUT"/>
+  </property>
+ </class>
+</hibernate-mapping>

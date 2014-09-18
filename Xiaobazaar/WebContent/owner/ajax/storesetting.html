@@ -1,0 +1,116 @@
+<!--Start Breadcrumb-->
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">Store Settings</a></li>
+		</ol>
+	</div>
+</div>
+<!--End Breadcrumb-->
+<h3>Store Settings</h3>
+<hr class="my-devider">
+<div class="row">
+	<div class="col-sm-12">
+		<form class="form-horizontal" role="form" onsubmit="updateStoreInfo(); return false;">
+			<div class="form-group">
+				<label class="col-sm-2" for="storeId">Store ID</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="storeId" placeholder="Store ID" disabled="disabled">
+				</div>
+			</div>
+			<div id="storeNameFG" class="form-group">
+				<label class="col-sm-2" for="storeName">Store Name</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="storeName" placeholder="Store name">
+				</div>
+			</div>
+			<div id="storeUrlFG" class="form-group">
+				<label class="col-sm-2" for="storeUrl">Store Link</label>
+				<div class="col-sm-4">
+					<div class="input-group">
+						<span class="input-group-addon">http://domain/store?name=</span>
+						<input type="text" class="form-control" id="storeUrl" placeholder="link">
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<a id="storeLink" href="https://www.xiaobazaar.com/" target="_blank">Go to store!</a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-2">Store Appearance</label>
+				<div class="col-sm-4">
+					<div class="btn-group" data-toggle="buttons">
+						<label id="layout-0" class="btn btn-primary active">
+							<input type="radio" name="layout" value="0"> Layout A
+						</label>
+						<label id="layout-1" class="btn btn-primary">
+							<input type="radio" name="layout" value="1"> Layout B
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<input type="text" class="form-control" id="storeTheme" placeholder="No theme" disabled="disabled">
+				</div>
+			</div>
+			<div id="storeDescriptionFG" class="form-group">
+				<label class="col-sm-2">Description</label>
+				<div class="col-sm-6">
+					<textarea class="form-control" rows="" cols="" id="storeDescription"></textarea>
+				</div>
+			</div>
+			<button type="submit" class="btn btn-sm btn-warning"><i class="fa fa-save"></i> Save</button>
+			<img src="/Xiaobazaar/owner/img/ajax-loader.gif" class="my-loading sr-only">
+			<font color="red" id="message"></font>
+		</form>
+	</div>
+</div>
+<hr class="my-devider">
+<h4>Products</h4>
+<div class="row" id="productsHolder">
+	
+	<div class="col-sm-2">
+		<label for="productPhotoUpload" class="center-block">
+			<img id="productPhotoImg" class="img-responsive my-image center-block" width="100%" alt="productPhoto" src="/Xiaobazaar/owner/img/newimg.png">
+		</label>
+		<form enctype="multipart/form-data" method="post" name="productPhotoForm" id="productPhotoForm">
+			<input type="file" class="sr-only" name="file" id="productPhotoUpload" onchange="uploadImage('productPhoto')">
+		</form>
+		<input type="text" id="productPhoto" value="/Xiaobazaar/owner/img/newimg.png" class="form-control sr-only">
+	</div>
+	<div class="col-sm-2">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="productNameFG" class="form-group">
+					<input type="text" class="form-control" id="productName" placeholder="New product name">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="productPriceFG" class="form-group">
+					<div class="input-group">
+						<span class="input-group-addon">$</span>
+						<input type="number" class="form-control" id="productPrice" placeholder="0.00">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="descriptionFG" class="form-group">
+					<textarea class="form-control" id="description" placeholder="Description..."></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<button class="btn btn-sm btn-success" onclick="createNewProduct()"><i class="fa fa-plus"></i> Add New Product</button>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	fillStoreInfo();
+	displayProduct();
+</script>
