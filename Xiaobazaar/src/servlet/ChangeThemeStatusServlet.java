@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
+import controller.DesignerController;
 import model.Theme;
 import manager.ThemeManager;
 
@@ -41,18 +43,14 @@ public class ChangeThemeStatusServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		JSONObject returnJson = new JSONObject();
-		String inputString = request.getParameter("json");
-		JSONObject inputJSON = (JSONObject)JSONValue.parse(inputString);
+		JSONParser parser = new JSONParser();
+
+
 		
-		Long themeID = (Long)inputJSON.get("themeID");
-		Long newStatus = (Long)inputJSON.get("status");
-		
-		Theme t = ThemeManager.getThemeById(themeID);
-		t.setThemeStatus(newStatus);
 		try{
-			ThemeManager.modifyTheme(t);
-			returnJson.put("result", 1);
-			returnJson.put("message", "Updated!");
+			String inputString = request.getParameter("json"); 
+			JSONObject inputJSON = (JSONObject) parser.parse(inputString);
+			returnJson = DesignerController.changeThemeStatus(inputJSON);
 		} catch (Exception e) {
 			returnJson.put("result", 0);
 			returnJson.put("message", "Fail!");

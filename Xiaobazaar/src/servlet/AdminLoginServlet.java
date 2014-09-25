@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
+import controller.AdminController;
+import controller.OwnerController;
 import manager.AdminManager;
 import model.Admin;
 
@@ -45,33 +48,20 @@ public class AdminLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		JSONObject returnJson = new JSONObject();
-		String inputString = request.getParameter("json");
-		//System.out.println(inputString);
-		JSONObject inputJSON = (JSONObject)JSONValue.parse(inputString);
-		String username = (String) inputJSON.get("username");
-		String password = (String) inputJSON.get("password");
-		//System.out.println(inputString);
+		JSONParser parser = new JSONParser();
+
 		try {
-			Admin admin = AdminManager.getAdminByName(username);
-			
-			if(admin != null){
-				String thisPassword = admin.getPassword();
-				if(thisPassword.equals(password)){
-					returnJson.put("status",1);
-					returnJson.put("message",username);
-				} else {
-					returnJson.put("status",0);
-					returnJson.put("message", "Invalid Password!");
-				}
-			}else{
-				returnJson.put("status",0);
-				returnJson.put("message", "No existing user!");
-			}
+			String inputString = request.getParameter("json");
+			JSONObject inputJson = (JSONObject) parser.parse(inputString);
+			//System.out.println("Input: " + inputJson.toJSONString());
+
+			returnJson = AdminController.adminAuth(inputJson);
 		} catch (Exception e) {
-			returnJson.put("status",0);
+			returnJson.put("status", 0);
 			returnJson.put("message", e.toString());
+			e.printStackTrace();
 		}
-		
+
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.print(returnJson.toString());

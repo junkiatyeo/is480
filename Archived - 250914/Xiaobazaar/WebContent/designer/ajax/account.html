@@ -1,0 +1,76 @@
+<!--Start Breadcrumb-->
+<div class="row">
+	<div id="breadcrumb" class="col-xs-12">
+		<ol class="breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="#">Account</a></li>
+		</ol>
+	</div>
+</div>
+<!--End Breadcrumb-->
+<h4 class="page-header">Profile</h4>
+<div class="box-content">
+<form class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">ID</label>
+			<div class="col-sm-4">
+				<input id="userID" type="text" class="form-control" data-toggle="tooltip"
+					data-placement="bottom" title="" disabled
+					data-original-title="Tooltip for name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">User Name</label>
+			<div class="col-sm-4">
+				<input id="username" type="text" class="form-control" data-toggle="tooltip"
+					data-placement="bottom" title="" disabled
+					data-original-title="Tooltip for name">
+			</div>
+		</div>
+	</form>
+
+</div>
+<br></br>
+<h4 class="page-header">Change Password</h4>
+<div class="box-content">
+	<form onsubmit="changePassword(); return false;" class="form-horizontal" role="form">
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Old Password</label>
+			<div class="col-sm-4">
+				<input id="oldPassword" type="password" class="form-control"
+					placeholder="Old Password" data-toggle="tooltip"
+					data-placement="bottom" title=""
+					data-original-title="Tooltip for name">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">New Password</label>
+			<div class="col-sm-4">
+				<input id="newPassword" type="password" class="form-control"
+					placeholder="New Password" data-toggle="tooltip"
+					data-placement="bottom" title=""
+					data-original-title="Tooltip for name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Confirm Password</label>
+			<div class="col-sm-4">
+				<input id="confirmPassword" type="password" class="form-control"
+					placeholder="Confirm Password" data-toggle="tooltip"
+					data-placement="bottom" title=""
+					data-original-title="Tooltip for name">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label id="changePasswordMsg" class="col-sm-2 control-label"></label>
+			<div class="col-sm-4">
+				<button type="submit" class="btn btn-success">Change</button>
+			</div>
+		</div>
+	</form>
+
+</div>
+<script>loadProfile();</script>

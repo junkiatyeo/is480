@@ -49,7 +49,7 @@ public class FileUploadServlet extends HttpServlet {
 		JSONObject returnJson = new JSONObject();
 		
 		JSONParser parser = new JSONParser();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH_mm_ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		
 		String contextRoot = getServletContext().getRealPath("/");
 		response.setContentType("text/html;charset=UTF-8");

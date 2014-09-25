@@ -3,8 +3,11 @@ package controller;
 import java.util.ArrayList;
 
 import org.json.simple.*;
+
 import model.Admin;
+import model.Owner;
 import manager.AdminManager;
+import manager.OwnerManager;
 
 public class AdminController {
 	
@@ -20,7 +23,7 @@ public class AdminController {
 			AdminManager.addAdmin(admin);
 			
 			returnJson.put("status", 1);
-			returnJson.put("message", admin.toJson());
+			returnJson.put("message", admin.getName());
 		}catch(Exception e){
 			returnJson.put("status", 0);
 			returnJson.put("message", e.toString());
@@ -34,7 +37,7 @@ public class AdminController {
 		ArrayList<Admin> tem = new ArrayList<Admin>();
 		
 		try{
-			String name = (String) inputJson.get("name");
+			String name = (String) inputJson.get("username");
 			String password = (String) inputJson.get("password");
 			
 			Admin admin = null;
@@ -84,6 +87,36 @@ public class AdminController {
 		}catch(Exception e){
 			returnJson.put("status", 0);
 			returnJson.put("message", e.toString());
+		}
+		
+		return returnJson;
+	}
+	
+	public static JSONObject adminAuth(JSONObject inputJson){
+		JSONObject returnJson = new JSONObject();
+		
+		try{
+			String name = (String) inputJson.get("username");
+			String password = (String) inputJson.get("password");
+			
+			Admin admin = AdminManager.getAdminByName(name);
+			
+			if(admin != null){
+				if(admin.getPassword().equals(password)){
+					returnJson.put("status", 1);
+					returnJson.put("message", admin.getName());
+				}else{
+					returnJson.put("status", 0);
+					returnJson.put("message", "Password is not correct!");
+				}
+			}else{
+				returnJson.put("status", 0);
+				returnJson.put("message", "User name not exist!");
+			}
+		}catch(Exception e){
+			returnJson.put("status", 0);
+			returnJson.put("message", e.toString());
+			e.printStackTrace();
 		}
 		
 		return returnJson;

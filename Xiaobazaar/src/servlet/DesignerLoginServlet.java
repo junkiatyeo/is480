@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
 
+import controller.DesignerController;
+import controller.OwnerController;
 import model.Designer;
 import model.Theme;
 import manager.DesignerManager;
@@ -45,32 +48,20 @@ public class DesignerLoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		JSONObject returnJson = new JSONObject();
-		String inputString = request.getParameter("json");
-		JSONObject inputJSON = (JSONObject)JSONValue.parse(inputString);
-		String username = (String) inputJSON.get("username");
-		String password = (String) inputJSON.get("password");
-		
+		JSONParser parser = new JSONParser();
+
 		try {
-			Designer designer = DesignerManager.getDesignerByName(username);
-			
-			if(designer != null){
-				String thisPassword = designer.getPassword();
-				if(thisPassword.equals(password)){
-					returnJson.put("status",1);
-					returnJson.put("message",username);
-				} else {
-					returnJson.put("status",0);
-					returnJson.put("message", "Invalid Password!");
-				}
-			}else{
-				returnJson.put("status",0);
-				returnJson.put("message", "No existing user!");
-			}
+			String inputString = request.getParameter("json");
+			JSONObject inputJson = (JSONObject) parser.parse(inputString);
+			System.out.println("Input: " + inputJson.toJSONString());
+
+			returnJson = DesignerController.designerAuth(inputJson);
 		} catch (Exception e) {
-			returnJson.put("status",0);
+			returnJson.put("status", 0);
 			returnJson.put("message", e.toString());
+			e.printStackTrace();
 		}
-		
+
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.print(returnJson.toString());

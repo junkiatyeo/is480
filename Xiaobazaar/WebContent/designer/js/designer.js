@@ -238,7 +238,7 @@ function createTheme() {
 	var newThemeName = $("#newThemeName").val();
 
 	if (newThemeName.length == 0) {
-		alert("Please enter a theme name.");
+		$("#message").html("Please enter a theme name!");
 	} else {
 		var designerName = localStorage.getItem("DESIGNER");
 		var themeURL = $("#designerTheme").val();
@@ -266,9 +266,9 @@ function createTheme() {
 				var status = data["status"];
 				var message = data["message"];
 				if (status == 0) {
-					alert(message);
+					$("#message").html(message);
 				} else {
-					alert("Congratulations! The theme is created!");
+					//$("#message").html(message);("Congratulations! The theme is created!");
 					location.reload();
 					// var fileUrl = data["fileUrl"];
 					// $("#" + id).val(fileUrl);
@@ -315,7 +315,7 @@ function changePassword() {
 			}
 		});
 	} else {
-		alert('Password should not less than 6 digits!');
+		$("#changePasswordMsg").html('Password should not less than 6 digits!');
 	}
 }
 

@@ -10,12 +10,12 @@
 <!--End Breadcrumb-->
 <h4 class="page-header">Profile</h4>
 <div class="box-content">
-<form class="form-horizontal" role="form">
+	<form class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">ID</label>
 			<div class="col-sm-4">
-				<input id="userID" type="text" class="form-control" data-toggle="tooltip"
-					data-placement="bottom" title="" disabled
+				<input id="userID" type="text" class="form-control"
+					data-toggle="tooltip" data-placement="bottom" title="" disabled
 					data-original-title="Tooltip for name">
 			</div>
 		</div>
@@ -23,8 +23,8 @@
 		<div class="form-group">
 			<label class="col-sm-2 control-label">User Name</label>
 			<div class="col-sm-4">
-				<input id="username" type="text" class="form-control" data-toggle="tooltip"
-					data-placement="bottom" title="" disabled
+				<input id="username" type="text" class="form-control"
+					data-toggle="tooltip" data-placement="bottom" title="" disabled
 					data-original-title="Tooltip for name">
 			</div>
 		</div>
@@ -34,7 +34,8 @@
 <br></br>
 <h4 class="page-header">Change Password</h4>
 <div class="box-content">
-	<form onsubmit="changePassword(); return false;" class="form-horizontal" role="form">
+	<form onsubmit="changePassword(); return false;"
+		class="form-horizontal" role="form">
 		<div class="form-group">
 			<label class="col-sm-2 control-label">Old Password</label>
 			<div class="col-sm-4">
@@ -63,11 +64,18 @@
 					data-original-title="Tooltip for name">
 			</div>
 		</div>
-		
+
 		<div class="form-group">
-			<label id="changePasswordMsg" class="col-sm-2 control-label"></label>
+			<label class="col-sm-2 control-label"></label>
 			<div class="col-sm-4">
-				<button type="submit" class="btn btn-success">Change</button>
+				<button type="submit" class="btn btn-success">Save</button>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label"></label>
+			<div class="col-sm-4">
+				<font color="red" id="changePasswordMsg"></font>
 			</div>
 		</div>
 	</form>

@@ -104,7 +104,8 @@ function loadThemeList() {
 														+ themeID
 														+ ',1)" type="button" class="btn btn-success">Accept</button>  <button onclick="changeStatus('
 														+ themeID
-														+ ',2)" type="button" class="btn btn-danger">Deny</button>';
+														+ ',2)" type="button" class="btn btn-danger">Deny</button>'
+														+ '<font color="red" id="message-"'+ themeID +'></font>';
 												break;
 											case "1":
 												// Approved
@@ -165,7 +166,7 @@ function changeStatus(themeID, status) {
 		error : function(err) {
 			console.log(err);
 			$(".my-loading").addClass('sr-only');
-			alert("adminLogin: check ajax!");
+			alert("changeStatus: check ajax!");
 		},
 		success : function(data) {
 			console.log(data);
@@ -173,9 +174,8 @@ function changeStatus(themeID, status) {
 			var status = data["status"];
 			var message = data["message"];
 			if (status == 0) {
-				alert("fail!");
+				$("message-"+themeID).html("Change failed!");
 			} else {
-				alert("Status Changed!");
 				location.reload();
 			}
 		}
@@ -220,7 +220,7 @@ function changePassword() {
 			}
 		});
 	} else {
-		alert('Password should not less than 6 digits!');
+		$("#changePasswordMsg").html('Password should not less than 6 digits!');
 	}
 }
 
