@@ -4,6 +4,13 @@
 //		"sAjaxDataProp" : "aaData",
 //	});
 //});
+
+/*
+ * function isLogin()
+ * It is a protector of admin portal. 
+ * If the user has not been logged in as admin, he/she will be redirected to login page.
+*/
+
 function isLogin() {
 	var admin = localStorage.getItem("ADMIN");
 	if (admin == undefined || admin == 'undefined') {
@@ -14,6 +21,12 @@ function isLogin() {
 		return true;
 	}
 }
+
+/*
+ * function adminLogin()
+ * Submit login form to "adminLogin" servlet to do verification.
+*/
+
 
 function adminLogin() {
 	$("#message").html('');
@@ -62,11 +75,20 @@ function adminLogin() {
 	}
 }
 
+/*
+ * function adminLogout()
+ * Logout admin and clean localStorage.
+ */
+
 function adminLogout() {
 	localStorage.clear();
 	window.location.href = "/Xiaobazaar/admin-login.html";
 }
 
+/*
+ * function AllTables()
+ * Loading jQuery DataTables.
+ */
 function AllTables() {
 	TestTable1();
 }
@@ -151,6 +173,12 @@ function loadThemeList() {
 
 }
 
+/*
+ * function changeStatus(themeID, status)
+ * Approve or Reject theme design (css file)
+ */
+
+
 function changeStatus(themeID, status) {
 	var input = {};
 	input.themeID = themeID;
@@ -183,6 +211,11 @@ function changeStatus(themeID, status) {
 	
 
 }
+
+/*
+ * changePassword()
+ * Submit changePassword form to "changeAdminPassword" servlet and get the response.
+ */
 
 function changePassword() {
 
@@ -254,6 +287,11 @@ function loadProfile() {
 	});
 
 }
+
+/*
+ * function adminRegister()
+ * Submit registration form to "AdminRegisterServlet" and get the response.
+ */
 
 function adminRegister(){
 	$("#message").html('');

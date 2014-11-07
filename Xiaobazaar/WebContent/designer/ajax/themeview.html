@@ -3,12 +3,12 @@
 	<div id="breadcrumb" class="col-xs-12">
 		<ol class="breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a href="#">Theme View</a></li>
+			<li><a href="#">Theme Manager</a></li>
 		</ol>
 	</div>
 </div>
 <!--End Breadcrumb-->
-<h4 class="page-header">Create New Theme</h4>
+<h4 class="page-header">Upload Theme</h4>
 <div class="box-content">
 	<form class="form-horizontal" role="form">
 		<input type="text" id="designerTheme" class="form-control sr-only">
@@ -19,7 +19,27 @@
 					data-toggle="tooltip" data-placement="bottom" title=""
 					data-original-title="Tooltip for name">
 			</div>
+			<br/>
 		</div>
+		
+		<div class="form-group">
+		<label class="col-sm-2 control-label">Theme Category</label>
+			<div class="col-sm-4">
+				<select id="newThemeCategory" name="newThemeCategory">
+					<option value="art">Art</option>
+					<option value="fashion">Fashion</option>
+					<option value="food">Food</option>
+					<option value="literature">Literature</option>
+					<option value="nature">Nature</option>
+					<option value="places">Places</option>
+					<option value="science">Science</option>
+					<option value="sports">Sports</option>
+					<option value="technology">Technology</option>
+					<option value="others">Others</option>
+				</select>
+			</div>
+		</div>
+		
 		<div class="form-group has-primary has-feedback">
 			<label class="col-sm-2 control-label">Upload</label>
 			<div class="col-sm-4">
@@ -43,7 +63,7 @@
 </div>
 
 <h4 class="page-header">
-	<br></br>All Themes
+	<br></br>Submitted Themes
 </h4>
 <div id="dashboard_tabs" class="col-xs-12 col-sm-12">
 	<div class="box-content no-padding">

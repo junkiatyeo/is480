@@ -1,0 +1,397 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+/*for designer: edit the background color, font color, and the footer's height*/
+body {
+  /*recommended height is between 5px and 50px*/
+  padding-bottom: 50px;
+  /*background of the page*/
+  background-color: #ECF2FC;
+  /*default font color of the page*/
+  color: #5a5a5a;
+  /*choices of font families to choose (generic font type: font family)
+  *sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+  *serif: "Times New Roman","New Century Schoolbook"
+  *monospace: "Andale Mono","Courier New","Courier,Fixed"
+  *cursive: "Comic Sans,Comic Sans MS"
+  *fantasy: "Impact"
+  */
+  font-family: Comic Sans,Comic Sans MS;
+  /*recommended font size is between 12px and 18px*/
+  font-size:15px;
+  /*styles to choose from: normal,italic, oblique*/
+  font-style:normal;
+  /*weights to choose from: normal,bold,bolder,lighter*/
+  font-weight:normal;
+}
+
+/*for designer: to adjust the behavior of hyperlink*/
+a:link {
+color: #FF9500;
+}
+a:visited {
+color: #D61313;
+}
+a:hover {
+color: #4E5386;
+}
+a:active {
+color: #FF9500;
+}
+
+/*Account Header Text
+*for designer: edit the font color of the account header
+*/
+#accheader{
+  position:absolute;
+  right:15px;
+  margin:15px;
+  color:#fff;
+}
+
+/*Account Header Box
+*for designer: edit the background color and border of the account header box
+*/
+  .navbar-wrapper .navbar {
+    border-top-left-radius:20px;
+	border-top-right-radius:0px;
+	border-bottom-left-radius:0px;
+	border-bottom-right-radius:20px;
+	border:0px solid black;
+	background-color:#E49308
+  }
+
+/*Content
+*for designer: to adjust the height and the margin-bottom of the content
+*/
+.carousel {
+  height: 200px;
+  margin-bottom: 30px;
+}
+
+/* Store header
+*for designer: to adjust the height and the background color of the store header
+*/
+.carousel .item {
+  height: 200px;
+  background-color: #063FA0;
+}
+
+/*Store header text*/
+.carousel-caption {
+  /*for designer: to adjust the vertical position of the store header text*/
+  bottom:0px;
+  padding-bottom:0px;
+  /*for designer: change the font style of the store header text*/
+  color: #D9DDE4;
+  /*choices of font families to choose (generic font type: font family)
+  *sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+  *serif: "Times New Roman","New Century Schoolbook"
+  *monospace: "Andale Mono","Courier New","Courier,Fixed"
+  *cursive: "Comic Sans,Comic Sans MS"
+  *fantasy: "Impact"
+  */
+  font-family: Comic Sans,Comic Sans MS;
+  /*recommended font size is between 12px and 18px*/
+  font-size:15px;
+  /*styles to choose from: normal,italic, oblique*/
+  font-style:normal;
+  /*weights to choose from: normal,bold,bolder,lighter*/
+  font-weight:normal;
+}
+
+#storeName{
+	/*for designer: change the font style of the store name*/
+	color: #fff;
+	/*choices of font families to choose (generic font type: font family)
+	*sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+	*serif: "Times New Roman","New Century Schoolbook"
+	*monospace: "Andale Mono","Courier New","Courier,Fixed"
+	*cursive: "Comic Sans,Comic Sans MS"
+	*fantasy: "Impact"
+	*/
+	font-family:Comic Sans,Comic Sans MS;
+	/*recommended font size is between 24px and 40px*/
+	font-size:45px;
+	/*styles to choose from: normal,italic, oblique*/
+	font-style:normal;
+	/*weights to choose from: normal,bold,bolder,lighter*/
+	font-weight:bolder;
+}
+
+#storeDescription{
+	/*for designer: change the font style of the store description*/
+	color: #fff;
+	/*choices of font families to choose (generic font type: font family)
+	*sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+	*serif: "Times New Roman","New Century Schoolbook"
+	*monospace: "Andale Mono","Courier New","Courier,Fixed"
+	*cursive: "Comic Sans,Comic Sans MS"
+	*fantasy: "Impact"
+	*/
+	font-family:Comic Sans,Comic Sans MS;
+	/*recommended font size is between 12px and 18px*/
+	font-size:15px;
+	/*styles to choose from: normal,italic, oblique*/
+	font-style:normal;
+	/*weights to choose from: normal,bold,bolder,lighter*/
+	font-weight:lighter;
+}
+
+/**
+* Menu
+*/
+#left-menu{
+	/*do not change*/
+	position: fixed;
+	z-index:9999;
+	/*for designer: border radius for menu
+	*recommended value is between 0px and 25px
+	*/
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	/*for designer: border for menu
+	*recommended value is between 0px and 5px
+	*/
+	border:0px solid black;
+	/*for designer: size of the menu bar
+	*recommended size: 5 to 25px
+	*/
+	padding: 5px;
+	/*for designer: adjust the vertical position of menu bar, 
+	*view-able range between 0% and 85%
+	*(the lower the value, the higher the position of the menu bar)
+	*/
+	top: 50%;
+	/*for designer: change the font style of the menu*/
+	color: #D9DDE4;
+	/*choices of font families to choose (generic font type: font family)
+	*sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+	*serif: "Times New Roman","New Century Schoolbook"
+	*monospace: "Andale Mono","Courier New","Courier,Fixed"
+	*cursive: "Comic Sans,Comic Sans MS"
+	*fantasy: "Impact"
+	*/
+	font-family: Comic Sans,Comic Sans MS;
+	/*recommended font size is between 12px and 18px*/
+	font-size:15px;
+	/*styles to choose from: normal,italic, oblique*/
+	font-style:normal;
+	/*weights to choose from: normal,bold,bolder,lighter*/
+	font-weight:normal;
+	/*for designer: change the background color of the menu*/
+	background-color: #01163D;
+}
+
+#right-menu{
+	/*do not change*/
+	position: fixed;
+	z-index:9999;
+	/*for designer: border radius for menu
+	*recommended value is between 0px and 25px
+	*/
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	/*for designer: border for menu
+	*recommended value is between 0px and 5px
+	*/
+	border:0px solid black;
+	/*for designer: size of the menu bar
+	*recommended size: 5 to 25px
+	*/
+	padding: 5px;
+	/*for designer: adjust the vertical position of menu bar, 
+	*view-able range between 0% and 85%
+	*(the lower the value, the higher the position of the menu bar)
+	*/
+	top: 50%;
+	/*for designer: change the font style of the menu*/
+	color: #D9DDE4;
+	/*choices of font families to choose (generic font type: font family)
+	*sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+	*serif: "Times New Roman","New Century Schoolbook"
+	*monospace: "Andale Mono","Courier New","Courier,Fixed"
+	*cursive: "Comic Sans,Comic Sans MS"
+	*fantasy: "Impact"
+	*/
+	font-family: Comic Sans,Comic Sans MS;
+	/*recommended font size is between 12px and 18px*/
+	font-size:15px;
+	/*styles to choose from: normal,italic, oblique*/
+	font-style:normal;
+	/*weights to choose from: normal,bold,bolder,lighter*/
+	font-weight:normal;
+	/*for designer: change the background color of the menu*/
+	background-color: #01163D;
+}
+
+/*left-and-right menu bar*/
+.sidr{
+	/*do not change*/
+	display:none;
+	position:fixed;
+	top:0%;
+	height:100%;
+	z-index:999999;
+	overflow-x:none;
+	overflow-y:auto;
+	padding:0 15px;
+	/*for designer: adjust width
+	*recommended width is between 250px and 350px
+	*/
+	width:250px;
+	/*for designer: change the font style of the menu bar*/
+	color: #000;
+	/*choices of font families to choose (generic font type: font family)
+	*sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+	*serif: "Times New Roman","New Century Schoolbook"
+	*monospace: "Andale Mono","Courier New","Courier,Fixed"
+	*cursive: "Comic Sans,Comic Sans MS"
+	*fantasy: "Impact"
+	*/
+	font-family:Comic Sans,Comic Sans MS;
+	/*recommended font size is between 12px and 18px*/
+	font-size:15px;
+	/*styles to choose from: normal,italic, oblique*/
+	font-style:normal;
+	/*weights to choose from: normal,bold,bolder,lighter*/
+	font-weight:normal;
+	/*for designer: change the background color of the menu bar*/
+	background-color: #01163D;
+}
+
+/*items in left-and-right menu bar*/
+.sidr ul li{
+	/*for designer: adjust height for each line item
+	*recommended height is between 30px and 50px
+	*/
+	line-height:40px;
+	/*for designer: adjust border for each line item
+	*recommended border thickness is between 0px and 5px
+	*/
+	border-top:1px solid #4d4d4d;
+	border-bottom:1px solid #1a1a1a;
+}
+
+/*items in left-and-right menu bar when hovered*/
+.sidr ul li:hover,.sidr ul li.active,.sidr ul li.sidr-class-active{
+	/*for designer: change the background color of line item when hovered*/
+	background-color: #840;
+	/*for designer: change the font color of line item when hovered*/
+	color:#000;
+	/*for designer: adjust hovered height for each line item
+	*recommended height is between 40px and 60px
+	*/
+	line-height:50px
+}
+
+/**
+* Product
+*/
+/*over-layer for the product when hovered*/
+.overlay {
+	/*Do not change*/
+	position: absolute;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+	display: none;
+	color: #fff;
+	/*for designer: adjust the size of the over layer*/
+    width: 100%;
+    height: 100%;
+	/*for designer: adjust the background colour of the over layer
+	*NOTE: use transparent color
+	*/
+    background-color: rgba(0,0,0,0.5);
+}
+
+/*for designer: adjust the text properties of the product title*/
+.overlay .title {
+    text-align: center;
+	/*for designer: change the font style of the product title*/
+    color: #fff;
+    /*choices of font families to choose (generic font type: font family)
+    *sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+    *serif: "Times New Roman","New Century Schoolbook"
+    *monospace: "Andale Mono","Courier New","Courier,Fixed"
+    *cursive: "Comic Sans,Comic Sans MS"
+    *fantasy: "Impact"
+    */
+    font-family: Comic Sans,Comic Sans MS;
+    /*recommended font size is between 12px and 18px*/
+    font-size:30px;
+    /*styles to choose from: normal,italic, oblique*/
+    font-style:normal;
+    /*weights to choose from: normal,bold,bolder,lighter*/
+    font-weight:bold;
+}
+
+/*for designer: adjust the text properties of the product price*/
+.price{
+	text-align: center;
+	/*for designer: change the font style of the product price*/
+    color: #fff;
+    /*choices of font families to choose (generic font type: font family)
+    *sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+    *serif: "Times New Roman","New Century Schoolbook"
+    *monospace: "Andale Mono","Courier New","Courier,Fixed"
+    *cursive: "Comic Sans,Comic Sans MS"
+    *fantasy: "Impact"
+    */
+    font-family: Comic Sans,Comic Sans MS;
+    /*recommended font size is between 12px and 18px*/
+    font-size:15px;
+    /*styles to choose from: normal,italic, oblique*/
+    font-style:normal;
+    /*weights to choose from: normal,bold,bolder,lighter*/
+    font-weight:bold;
+}
+
+/*product description on the overlay when hovered*/
+.overlay .description {
+	/*Do not change*/
+    position: absolute;
+    bottom: 0;
+    left: 0;
+	margin: 0;
+	/*for designer: to adjust the width of the product description
+	*NOT limited to transparent color
+	*/
+    background-color: rgba(0,0,0,0.80);
+	/*recommended width is between 80% and 100%*/
+    width: 100%;
+    /*for designer: border radius for product description
+	*recommended value is between 0px and 25px
+	*/
+	border-top-left-radius:15px;
+	border-top-right-radius:15px;
+	border-bottom-left-radius:15px;
+	border-bottom-right-radius:15px;
+	/*for designer: border for product description
+	*recommended value is between 0px and 5px
+	*/
+	border:5px solid tan;
+	/*for designer: change the font alignment of the product description*/
+	text-align: left;
+	/*for designer: change the font style of the product description*/
+    color: #FCEFC2;
+    /*choices of font families to choose (generic font type: font family)
+    *sans-serif: "Helvetica","Verdana","Gill Sans","Avantgarde","Helvetica Narrow"
+    *serif: "Times New Roman","New Century Schoolbook"
+    *monospace: "Andale Mono","Courier New","Courier,Fixed"
+    *cursive: "Comic Sans,Comic Sans MS"
+    *fantasy: "Impact"
+    */
+    font-family: Comic Sans,Comic Sans MS;
+    /*recommended font size is between 12px and 18px*/
+    font-size:15px;
+    /*styles to choose from: normal,italic, oblique*/
+    font-style:normal;
+    /*weights to choose from: normal,bold,bolder,lighter*/
+    font-weight:lighter;
+}
+/*
+* End of Product
+**/

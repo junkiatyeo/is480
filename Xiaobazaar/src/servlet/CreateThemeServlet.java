@@ -49,6 +49,8 @@ public class CreateThemeServlet extends HttpServlet {
 		JSONObject inputJSON = (JSONObject) JSONValue.parse(inputString);
 
 		String newThemeName = (String) inputJSON.get("newThemeName");
+		String newThemeCategory = (String) inputJSON.get("newThemeCategory");
+		String newPrice = (String) inputJSON.get("newPrice");
 		String themeURL = (String) inputJSON.get("themeURL");
 		String designerName = (String) inputJSON.get("designerName");
 
@@ -68,7 +70,7 @@ public class CreateThemeServlet extends HttpServlet {
 			// update database
 			if (isDuplicated == false) {
 				try {
-					Theme newTheme = new Theme(newThemeName,
+					Theme newTheme = new Theme(newThemeName,newThemeCategory,newPrice,
 							DesignerManager.getDesignerByName(designerName),
 							themeURL, 0);
 					ThemeManager.addTheme(newTheme);

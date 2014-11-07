@@ -9,9 +9,6 @@ import java.util.List;
 
 public class HibernateUtil {
 
-	/**
-	 * @author Bie Yaqing
-	 */
 	//configuration
 	private static final SessionFactory sessionFactory;
 	

@@ -46,6 +46,8 @@ public class AdminThemeServlet extends HttpServlet {
 			JSONObject o = new JSONObject();
 			o.put("ThemeID", Long.toString(t.getThemeId()));
 			o.put("Name",t.getName());
+			o.put("Category", t.getCategory());
+			o.put("Price", t.getPrice());
 			o.put("Designer",t.getDesigner().getName());
 			o.put("URL",t.getThemeURL());
 			o.put("Status",Long.toString(t.isThemeStatus()));

@@ -1,3 +1,7 @@
+/*
+ * function AllTables()
+ * Loading jQuery DataTables.
+ */
 function AllTables() {
 	TestTable1();
 }
@@ -5,6 +9,11 @@ function AllTables() {
 function saveTheme(id) {
 
 }
+
+/*
+ * function loadThemeList()
+ * Load response data from servlet and print the output in HTML format.
+ */
 
 function loadThemeList() {
 	$(document)
@@ -99,6 +108,12 @@ function loadThemeList() {
 
 }
 
+/*
+ * function isLogin()
+ * It is a protector of designer portal. 
+ * If the user has not been logged in as designer, he/she will be redirected to login page.
+*/
+
 function isLogin() {
 	var designer = localStorage.getItem("DESIGNER");
 	if (designer == undefined || designer == 'undefined') {
@@ -117,6 +132,11 @@ function designerLogout() {
 	window.location.href = "/Xiaobazaar/designer-login.html";
 }
 
+/*
+ * function designerLogout()
+ * Logout designer and clean localStorage.
+ */
+
 function designerLogin() {
 	$("#message").html('');
 	$(".my-loading").addClass('sr-only');
@@ -126,7 +146,7 @@ function designerLogin() {
 	if (username.length == 0 || password.length == 0) {
 		$("#message").html('Do not leave blanks!');
 	} else if (password.length < 6) {
-		$("#message").html('Password should not less than 6 digits!');
+		$("#message").html('Password should not be less than 6 digits!');
 	} else {
 		$(".my-loading").removeClass('sr-only');
 
@@ -164,11 +184,16 @@ function designerLogin() {
 	}
 }
 
+/*
+ * function saveTheme(number)
+ * Save modified information into database and get the response.
+ */
+
 function saveTheme(number) {
 
 	var newThemeName = $("#name-" + number).val();
 	if (newThemeName.length == 0) {
-		alert("Do not leave name blank!");
+		alert("Theme name must not be empty.");
 	    location.reload();
 	} else {
 		var newURL = $("#designerTheme-" + number + "-").attr("href");
@@ -205,6 +230,11 @@ function saveTheme(number) {
 	}
 }
 
+/*
+ * function uploadCSS(id)
+ * Upload selected CSS file to server.
+ */
+
 function uploadCSS(id) {
 	var fd = new FormData(document.getElementById(id + "Form"));
 	$
@@ -219,7 +249,11 @@ function uploadCSS(id) {
 					console.log(err);
 					alert("uploadImage: check ajax!");
 				},
-				success : function(data) {
+				success : function(jsObject) {
+					console.log(jsObject);
+					var jsonData= JSON.stringify(jsObject);
+					console.log(jsonData);
+					var data= jQuery.parseJSON(jsonData);
 					console.log(data);
 					var status = data["status"];
 					var message = data["message"];
@@ -229,13 +263,22 @@ function uploadCSS(id) {
 						var fileUrl = data["fileUrl"];
 						$("#" + id).val(fileUrl);
 						$("#" + id).attr("href", fileUrl);
+						
+						var message = "Your theme has been added sucessfully";
+						alert(message);
 					}
 				}
 			});
 }
 
+/*
+ * function createTheme()
+ * Submit createTheme form to "createTheme" servlet and get the response.
+ */
+
 function createTheme() {
 	var newThemeName = $("#newThemeName").val();
+	var newThemeCategory = $("#newThemeCategory option:selected").val();
 
 	if (newThemeName.length == 0) {
 		$("#message").html("Please enter a theme name!");
@@ -247,7 +290,7 @@ function createTheme() {
 		input.themeURL = themeURL
 		input.designerName = designerName;
 		input.newThemeName = newThemeName;
-
+		input.newThemeCategory = newThemeCategory;
 		var inputJson = JSON.stringify(input);
 		inputJson = encodeURI(inputJson);
 
@@ -278,6 +321,11 @@ function createTheme() {
 		});
 	}
 }
+
+/*
+ * changePassword()
+ * Submit changePassword form to "changeAdminPassword" servlet and get the response.
+ */
 
 function changePassword() {
 
@@ -319,6 +367,11 @@ function changePassword() {
 	}
 }
 
+/*
+ * loadProfile()
+ * Load designer's profile information.
+ */
+
 function loadProfile() {
 	
 	var input = {};
@@ -349,6 +402,11 @@ function loadProfile() {
 	});
 
 }
+
+/*
+ * function designerRegister()
+ * Submit registration form to "DesignerRegisterServlet" and get the response.
+ */
 
 function designerRegister(){
 	$("#message").html('');

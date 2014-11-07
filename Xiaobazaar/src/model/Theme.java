@@ -6,14 +6,18 @@ public class Theme {
 
 	private long themeId;
 	private String name;
+	private String category;
+	private double price;
 	private Designer designer;
 	private String themeURL;
 	private long themeStatus;
 	
 	public Theme(){}
 	
-	public Theme(String name, Designer designer, String themeURL, long themeStatus) {
+	public Theme(String name, String category, double price, Designer designer, String themeURL, long themeStatus) {
 		this.name = name;
+		this.category = category;
+		this.price = price;
 		this.designer = designer;
 		this.themeURL = themeURL;
 		this.themeStatus = themeStatus;
@@ -38,6 +42,20 @@ public class Theme {
 		this.name = name;
 	}
 
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	
 	public String getThemeURL() {
 		return themeURL;
 	}
@@ -59,6 +77,7 @@ public class Theme {
 		
 		returnJson.put("themeId", this.themeId);
 		returnJson.put("name", this.name);
+		returnJson.put("category", this.category);
 		returnJson.put("designer", this.designer.getDesignerId());
 		returnJson.put("themeURL", this.themeURL);
 
@@ -70,6 +89,7 @@ public class Theme {
 		
 		returnJson.put("themeId", this.themeId);
 		returnJson.put("name", this.name);
+		returnJson.put("category", this.category);
 		returnJson.put("designer", this.designer.toJson());
 		returnJson.put("themeURL", this.themeURL);
 

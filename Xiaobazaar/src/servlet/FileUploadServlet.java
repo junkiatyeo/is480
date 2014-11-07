@@ -49,14 +49,14 @@ public class FileUploadServlet extends HttpServlet {
 		JSONObject returnJson = new JSONObject();
 		
 		JSONParser parser = new JSONParser();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HHmmsss");
 		
 		String contextRoot = getServletContext().getRealPath("/");
 		response.setContentType("text/html;charset=UTF-8");
 		
 		try{
 			JSONObject input = (JSONObject)parser.parse(request.getParameter("json"));
-			//System.out.println("input: " + input.toJSONString());
+			System.out.println("input: " + input.toJSONString());
 			
 			boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 			if(isMultipart){
@@ -104,9 +104,11 @@ public class FileUploadServlet extends HttpServlet {
 									}
 								}
 								
-								fileDir = contextRoot+uploadDirectory+"/"+folderName+File.separator+folderName+dateString+fileName;
-								urlDir = "/Xiaobazaar/"+uploadDirectory+"/"+folderName+File.separator+folderName+dateString+fileName;
 								
+								String formattedFileName=dateString+fileName;
+								fileDir = contextRoot+uploadDirectory+File.separator+folderName+File.separator;
+								urlDir = "/Xiaobazaar/"+uploadDirectory+"/"+folderName+"/"+dateString+fileName;
+								System.out.println(""+fileDir);
 								boolean correctFileType = false;
 								
 								if(input.containsKey("fileType")){
@@ -125,12 +127,21 @@ public class FileUploadServlet extends HttpServlet {
 									InputStream stream = item.openStream();
 									
 									if(item.isFormField()){
-										// Do not process file out put stream
-										// it is not a file but a form field
-										// this could happen when there is a form within a form
-										// I don't know, just guess~~ HA HA!
+										
 									}else{
-										OutputStream os = new FileOutputStream(new File(fileDir));
+										//File auxFile=new File(fileName);
+										
+										//File tempFile=new File("C:\\Users\\Jun Kiat\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp3\\wtpwebapps\\Xiaobazaar\\designer\\theme\\20141101T0113017theme.css");
+										File tempFile=new File(fileDir+formattedFileName);
+										tempFile.getParentFile().mkdirs();
+										System.out.print(tempFile);
+										
+										if(!tempFile.exists()){
+											tempFile.createNewFile();
+										}
+										System.out.println("outputFile:"+tempFile);
+										//check
+										OutputStream os = new FileOutputStream(tempFile);
 										int sizeInt = 0;
 										int restrictSize = 2000000;
 										
@@ -152,7 +163,7 @@ public class FileUploadServlet extends HttpServlet {
 												// return exceed 2Mb!
 												stream.close();
 												os.close();
-												File file = new File(fileDir);
+												File file = new File(fileDir+formattedFileName);
 												
 												if(file.delete()){
 													// clear failed file!
@@ -165,13 +176,13 @@ public class FileUploadServlet extends HttpServlet {
 												}
 											}else{
 												// success
-												String ACCESSKEY = "AKIAIAEQIKWNZUFMWEPA";
-												String SECRETKEY = "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";
-												String BUKETNAME = "wrpj";
+												String ACCESSKEY = "AKIAISGAJHMXX5XXB44A";
+												String SECRETKEY = "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";
+												String BUKETNAME = "xiaobazaar";
 												String S3ROOT = "img";
 												String S3URL = "https://s3-ap-southeast-1.amazonaws.com/";
 												
-												File toS3File = new File(fileDir);
+												File toS3File = new File(fileDir+formattedFileName);
 												AWSCredentials credentials = new BasicAWSCredentials(ACCESSKEY, SECRETKEY);
 												AmazonS3 s3client = new AmazonS3Client(credentials);
 												

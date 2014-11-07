@@ -1,6 +1,15 @@
+/*
+ * function injectTheme(url)
+ * Switch theme function in preview page.
+ */
 function injectTheme(url){
 	document.getElementById('viewIframe').contentWindow.updateTheme(url);
 }
+
+/*
+ * function updateTheme()
+ * Change theme for the store.
+ */
 
 function updateTheme(){
 	var themeId = Number($("input:radio[name=theme]:checked").val());
@@ -34,6 +43,11 @@ function updateTheme(){
 	});
 	
 }
+
+/*
+ * function getApprovedThemes
+ * Get all themes that are approved from servlet "GetApprovedThemesServlet"
+ */
 
 function getApprovedThemes(){
 	$.ajax({
@@ -77,6 +91,11 @@ function getApprovedThemes(){
 		}
 	});
 }
+
+/*
+ * changePassword()
+ * Submit changePassword form to "ChangePasswordServlet" servlet and get the response.
+ */
 
 function changePassword(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
@@ -139,6 +158,10 @@ function changePassword(){
 	}
 }
 
+/*
+ * function fillOwnerInfo()
+ * Load owner's profile information.
+ */
 function fillOwnerInfo(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
 	var ownerId = owner.ownerId;
@@ -147,6 +170,11 @@ function fillOwnerInfo(){
 	$("#ownerId").val(ownerId);
 	$("#ownerName").val(name);
 }
+
+/*
+ * function deleteProduct(id)
+ * Delete product
+ */
 
 function deleteProduct(id){
 	var input = {};
@@ -188,6 +216,11 @@ function deleteProduct(id){
 		}
 	});
 }
+
+/*
+ * function editProduct(id)
+ * Edit Product
+ */
 
 function editProduct(id){
 	console.log(id);
@@ -275,6 +308,11 @@ function editProduct(id){
 	}
 }
 
+/*
+ * function displayProduct()
+ * Show all products belongs to the owner.
+ */
+
 function displayProduct(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
 	var store = owner.store;
@@ -337,6 +375,11 @@ function displayProduct(){
 	
 	$("#productsHolder").prepend(productsHtml);
 }
+
+/*
+ * function createNewProduct()
+ * Create new product.
+ */
 
 function createNewProduct(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
@@ -413,6 +456,11 @@ function createNewProduct(){
 	}
 }
 
+/*
+ * function uploadImage(id)
+ * Upload image of a product.
+ */
+
 function uploadImage(id) {
 	var fd = new FormData(document.getElementById(id+"Form"));
 	$.ajax({
@@ -440,6 +488,10 @@ function uploadImage(id) {
 		}
 	});
 }
+/*
+ * function updateStoreInfo()
+ * Update store information
+ */
 
 function updateStoreInfo(){
 	$("#message").html('');
@@ -510,6 +562,11 @@ function updateStoreInfo(){
 	}
 }
 
+/*
+ * function fillStoreInfo()
+ * Load store information
+ */
+
 function fillStoreInfo(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
 	var store = owner.store;
@@ -535,6 +592,11 @@ function fillStoreInfo(){
 	$("#storeTheme").val(store.themeName);
 	
 }
+
+/*
+ * function isLogin()
+ * A protector of owner portal.
+ */
 
 function isLogin(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
@@ -603,6 +665,11 @@ function ownerRegister(){
 	}
 }
 
+/*
+ * function owerLogin()
+ * Submit login form to OwnerAuthServlet servlet and get the response.
+ */
+
 function ownerLogin(){
 	$("#message").html('');
 	$(".my-loading").addClass('sr-only');
@@ -649,7 +716,10 @@ function ownerLogin(){
 		});
 	}
 }
-
+/*
+ * function loadStorePreView()
+ * Load CSS and display it in iframe.
+ */
 function loadStorePreView(){
 	var owner = JSON.parse(localStorage.getItem("OWNER"));
 	var store = owner.store;

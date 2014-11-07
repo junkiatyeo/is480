@@ -11,6 +11,9 @@
   <property generated="never" lazy="false" name="name" type="java.lang.String">
    <column name="NAME"/>
   </property>
+  <property generated="never" lazy="false" name="category" type="java.lang.String">
+   <column name="CATEGORY"/>
+  </property>
   <many-to-one class="model.Designer" fetch="join" name="designer">
    <column name="DESIGNERID"/>
   </many-to-one>
