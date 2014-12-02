@@ -2091,6 +2091,11 @@ td.beauty-hover {
 }
 #page-login .text-right {
   margin-top: 15px;
+  float: right;
+}
+#page-login .text-left {
+  margin-top: 15px;
+  float: left;
 }
 #page-login .box {
   margin-top:15%;

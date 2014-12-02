@@ -40,6 +40,8 @@ function loadThemeList() {
 											var tempData = themes[i];
 											var themeID = tempData.ThemeID;
 											var name = tempData.Name;
+											var category = tempData.Category;
+											var price = "S$" +parseFloat(Math.round(tempData.Price*100)/100).toFixed(2);
 											var url = tempData.URL;
 											var status = tempData.Status;
 											switch (status) {
@@ -58,48 +60,35 @@ function loadThemeList() {
 											}
 											dataHtml += '\
 				<tr>\
-					<td id=id-'
+					<td>'
 													+ themeID
-													+ '>'
-													+ themeID
-													+ '</td>\
-					<td><input class="form-control input-sm" id="name-'
-													+ themeID
-													+ '" value="'
-													+ name
-													+ '"></td>\
-					<td><a id="designerTheme-'
-													+ themeID
-													+ '-" href="'
-													+ url
-													+ '" target="_blank">Download Source</a>'
-													+ '</td>\
-					<td><label for="designerTheme-'
-													+ themeID
-													+ '-Upload" class="btn btn-primary">Re-upload</label><form enctype="multipart/form-data" method="post" name="designerTheme-'
-													+ themeID
-													+ '-Form" id="designerTheme-'
-													+ themeID
-													+ '-Form">\
-													<input type="file" class="sr-only" name="file" id="designerTheme-'
-													+ themeID
-													+ '-Upload" onchange="uploadCSS(\'designerTheme-'
-													+ themeID
-													+ '-\')">\
-													</form></td>\
-													<td id="status-'+themeID+'">'
-													+ statusString
 													+ '</td>\
 					<td>'
-													+ '<button onclick="saveTheme('
+													+ name
+													+ '</td>\
+					<td>'
+													+ category
+													+ '</td>\
+					<td>'
+													+ price
+													+'</td>\
+					<td><a id="designerTheme-'
 													+ themeID
-													+ ')" type="button" class="btn btn-warning btn-label-left"><span><i class="fa fa-save"></i></span>Save</button>'
-													+ '<font color="red" id="message-'+themeID+'"></font></td>\
+													
+													+ '-" href="'
+													+ "http://ami.responsiveonly.com/?site="
+													+ "http://www.justkeepgo.in:8080/Xiaobazaar/store/samplepage.html?name="
+													+ url
+													+ '" target="_blank">Preview</a>'
+													+ '</td>\
+					<td>'
+													+ statusString
+													+ '</td>\
 				</tr>';
 										}
 
 										$("#themelist").html(dataHtml);
-
+										
 										LoadDataTablesScripts(AllTables);
 									}
 								});
@@ -120,8 +109,7 @@ function isLogin() {
 		location.href = "/Xiaobazaar/designer-login.html";
 		return false;
 	} else {
-		$("#userName").html(designer); // get designer's name from local
-		// storege.
+		$("#userName").html(designer); // get designer's name from local storage
 		return true;
 	}
 }
@@ -279,6 +267,7 @@ function uploadCSS(id) {
 function createTheme() {
 	var newThemeName = $("#newThemeName").val();
 	var newThemeCategory = $("#newThemeCategory option:selected").val();
+	var newThemePrice = parseFloat($("#newThemePrice").val()).toFixed(2);
 
 	if (newThemeName.length == 0) {
 		$("#message").html("Please enter a theme name!");
@@ -291,6 +280,7 @@ function createTheme() {
 		input.designerName = designerName;
 		input.newThemeName = newThemeName;
 		input.newThemeCategory = newThemeCategory;
+		input.newThemePrice = newThemePrice;
 		var inputJson = JSON.stringify(input);
 		inputJson = encodeURI(inputJson);
 
@@ -456,4 +446,203 @@ function designerRegister(){
 			}
 		});
 	}
+}
+
+function loadTransactions() {
+	var username = localStorage.getItem("DESIGNER");
+	var input = {};
+	input.fromdesigner = "true";
+	input.name = username;
+	var inputJson = JSON.stringify(input);
+	inputJson = encodeURI(inputJson);
+	$
+	.ajax({
+		url : '/Xiaobazaar/GetTransactionsServlet?json='
+				+ inputJson,
+		type : "POST",
+		dataType : 'json',
+		error : function(err) {
+			console.log(err);
+			alert("loadTransactions: check ajax!");
+		},
+		success : function(data) {
+			console.log(data);
+			var status = data["status"];
+			if (status == 0) {
+			} else {
+				var html = '';
+				var transations = data["transactions"];				
+				for ( var i in transations) {
+					var t = transations[i];
+					html += '<tr><td>' + t.TransactionID + '</td><td>'
+					+ t.TransactionTime.substring(0, t.TransactionTime.length - 2) + '</td><td>' + t.Name
+					+ '</td><td>' + t.Category + '</td><td>'
+					+ "S$"+ parseFloat(Math.round(t.Cost*100)/100).toFixed(2) + '</td></tr>'; 
+				}				
+				$("#transactionList").html(html);
+				LoadDataTablesScripts(AllTables);
+			}
+		}
+	});
+}
+
+function pagingApprovedTheme() {
+	displayApprovedTheme(1);
+}
+
+function getApprovedThemes2() {
+	
+	var input = {};
+	
+	var inputJson = JSON.stringify(input);
+	inputJson = encodeURI(inputJson);
+	$.ajax({
+		/*
+		 * url : '/Xiaobazaar/GetApprovedThemesServlet?hide=' +
+		 * $("#hide-my-theme").prop("checked") + "&json=" + inputJson,
+		 */url : '/Xiaobazaar/GetApprovedThemesServlet?category='
+				+ $("#category").val() + '&json=' + inputJson,
+		type : "POST",
+		dataType : 'json',
+		error : function(err) {
+			console.log(err);
+			alert("getApprovedThemes2: check ajax!");
+		},
+		success : function(data) {
+			console.log(data);
+			var status = data["status"];
+			if (status == 0) {
+			} else {
+				$("#data-storage").text(JSON.stringify(data["themes"]));
+				displayApprovedTheme(1);
+			}
+		}
+	});
+}
+
+function displayApprovedTheme(pageIndex) {
+	var transations = JSON.parse($("#data-storage").text());
+	if (transations == null || transations.length == 0) {
+		$("#approved-theme-list").html(
+				"<tr><td colspan='3'>No data available</td></tr>");
+		$(".pagination-info").text("Showing 0 to 0 of 0 entries");
+		$('#approved-theme-pagination')
+				.html(
+						'<li class="prev disabled"><a href="#">← Previous</a></li><li class="next disabled"><a href="#">Next → </a></li>');
+		return;
+	}
+	var pageSize = $("#page-size-select").val();
+	var fromIndex = pageSize * (pageIndex - 1);
+	var toIndex = fromIndex + pageSize;
+	var html = '';
+	var count = 0;
+	for ( var i in transations) {
+		if (parseInt(i) < fromIndex)
+			continue;
+		if (parseInt(i) >= toIndex)
+			break;
+		var t = transations[i];
+		if (count % 3 == 0) {
+			html += '<tr>';
+		}
+
+		html += '<td><img class="them-preview" alt="No Preview" src="'
+				+ t.imgURL
+				+ '"></img>'
+				+ '<a class="preview-link" id="designerTheme-'
+				+ t.ThemeID
+
+				+ '-" href="'
+				+ "http://ami.responsiveonly.com/?site="
+				+ "http://www.justkeepgo.in:8080/Xiaobazaar/store/samplepage.html?name="
+				+ t.themeURL
+				+ '" target="_blank">Preview</a><div class="theme-content"> <B>'
+				+ t.Name + '</B><BR/><span class="theme-detail">By '
+				+ t.Designer + '<BR/>Category:  ' + t.Category
+				+ '</span>'
+				+ '<BR/><span class="theme-detail">Price: S$' + parseFloat(Math.round(t.Price.substring(1,t.Price.length)*100)/100).toFixed(2);
+				+ '</span></div>'
+		if (count % 3 == 2) {
+			html += '</tr>';
+		}
+		count++;
+	}
+	if (count % 3 == 1) {
+		html += '<td></td><td></td></tr>';
+	}
+	if (count % 3 == 2) {
+		html += '<td></td></tr>';
+	}
+	$("#approved-theme-list").html(html);
+
+	$(".pagination-info").text(
+			"Showing " + (fromIndex + 1) + " to " + (fromIndex + count)
+					+ " of " + transations.length + " entries");
+
+	$(".pagination-info").text(
+			"Showing " + (fromIndex + 1) + " to " + (fromIndex + count)
+					+ " of " + transations.length + " entries");
+
+	html = '<li class="prev disabled"><a href="#">← Previous</a></li>';
+	var totalPage = Math.ceil(transations.length / pageSize);
+	for (var i = 0; i < totalPage; i++) {
+		html += '<li id="page' + (i + 1)
+				+ '" class="item" onclick="displayApprovedTheme(' + (i + 1)
+				+ ')"><a href="#">' + (i + 1) + '</a></li>';
+	}
+	html += '<li class="next"><a href="#">Next → </a></li>';
+	$('#approved-theme-pagination').html(html);
+	$('#approved-theme-pagination .item').removeClass("active");
+	$("#page" + (pageIndex)).addClass("active");
+	if (pageIndex == 1 || pageSize == 0) {
+		$('#approved-theme-pagination .prev').addClass("disabled");
+	} else {
+		$('#approved-theme-pagination .prev').removeClass("disabled");
+		$('#approved-theme-pagination .prev').click(function() {
+			displayApprovedTheme(pageIndex - 1);
+		});
+	}
+	if (pageIndex == totalPage || pageSize == 0) {
+		$('#approved-theme-pagination .next').addClass("disabled");
+	} else {
+		$('#approved-theme-pagination .next').removeClass("disabled");
+		$('#approved-theme-pagination .next').click(function() {
+			displayApprovedTheme(pageIndex + 1);
+		});
+	}
+}
+
+function getAllCategories() {
+	$.ajax({
+		url : '/Xiaobazaar/GetCategoriesServlet',
+		type : "POST",
+		dataType : 'json',
+		error : function(err) {
+			console.log(err);
+			alert("getAllCategories: check ajax!");
+		},
+		success : function(data) {
+			console.log(data);
+			var status = data["status"];
+			if (status == 0) {
+			} else {
+				var themesHtml = '<option value="All" checked>All</option>';
+
+				var themes = data["categories"];
+				for ( var i in themes) {
+					var t = themes[i];
+
+					themesHtml += '<option value = "' + t + '">' + t
+							+ '</option>';
+
+				}
+
+				$("#category").html(themesHtml);
+				$("#category").change(function() {
+					// $('#datatable-1').dataTable().fnDestroy();
+					getApprovedThemes2();
+				});
+			}
+		}
+	});
 }

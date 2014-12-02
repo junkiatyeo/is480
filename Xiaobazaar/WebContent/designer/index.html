@@ -25,11 +25,7 @@
 				<script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
 				<script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
 		<![endif]-->
-<!-- Pure Chat Snippet -->
-<script type='text/javascript'>
-(function () {	var done = false;	var script = document.createElement('script'); script.async = true;	script.type = 'text/javascript';	script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) {	if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({ c: '1f313e14-09b1-4b29-b164-5053f9e248b5', f: true }); done = true;	}	};	})();
-</script>
-<!-- End Pure Chat Snippet -->
+
 </head>
 <body>
 	<!--Start Header-->
@@ -98,6 +94,13 @@
 					<li><a href="ajax/resource.html" class="ajax-link"> <i
 							class="fa fa-eye"></i> <span class="hidden-xs">Resource</span>
 					</a></li>
+					<li><a href="ajax/thememarketplace.html" class=" ajax-link">
+						<i class="fa fa-gear"></i>
+						<span class="hidden-xs">Theme Marketplace</span>
+					</a></li>
+					<li><a href="ajax/transaction.html" class="ajax-link"> <i
+							class="fa fa-user"></i> <span class="hidden-xs">Transaction</span>
+					</a></li>
 					<li><a href="ajax/account.html" class="ajax-link"> <i
 							class="fa fa-user"></i> <span class="hidden-xs">Account</span>
 					</a></li>
@@ -131,4 +134,11 @@
 	<script src="js/designer.js"></script>
 
 </body>
+
+<!-- Pure Chat Snippet -->
+<script type='text/javascript'>
+(function () {	var done = false;	var script = document.createElement('script'); script.async = true;	script.type = 'text/javascript';	script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) {	if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({ c: '1f313e14-09b1-4b29-b164-5053f9e248b5', f: true }); done = true;	}	};	})();
+</script>
+<!-- End Pure Chat Snippet -->
+
 </html>
